@@ -4,7 +4,6 @@ interface RideControl {
     void startRide();
     void endRide();
 }
-
 abstract class Ride {
     String rideId;
     double distance;
@@ -30,7 +29,6 @@ class BikeRide extends Ride implements RideControl {
         super(rideId, distance);
     }
 
-    @Override
     double calculateFare() {
         return distance * 8;
     }
@@ -50,7 +48,6 @@ class CarRide extends Ride implements RideControl {
         super(rideId, distance);
     }
 
-    @Override
     double calculateFare() {
         return distance * 15;
     }
@@ -117,20 +114,13 @@ public class Ride_Booking_System {
                 r = new CarRide(id, dist);
             } else {
                 System.out.println("Invalid choice!");
-                i--; // retry
+                i--;
                 continue;
             }
-
-            // Start Ride
             ((RideControl) r).startRide();
-
-            // Add to manager
             manager.addRide(r);
-
-            // End Ride
             ((RideControl) r).endRide();
         }
-
         System.out.println("\n===== Ride Details =====");
         manager.displayAllRides();
 
